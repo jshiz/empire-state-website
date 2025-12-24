@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import { Menu, X, Facebook, Instagram, Twitter, Youtube, Play, Pause, SkipForward, SkipBack } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -21,16 +21,108 @@ const socialLinks = [
   { href: "https://www.youtube.com/@EmpireStateBulldogs", icon: Youtube, label: "YouTube" },
 ]
 
+const songs = [
+  { title: "Bulldog Flex Anthem", file: "Bulldog%20Flex%20Anthem.mp3" },
+  { title: "Bulldog Love", file: "Bulldog%20Love.mp3" },
+  { title: "Empire State Bulldogs", file: "Empire%20State%20Bulldogs.mp3" },
+  { title: "Empire State Reign", file: "Empire%20State%20Reign.mp3" },
+  { title: "King Simba's Reign", file: "King%20Simba%27s%20Reign.mp3" },
+  { title: "Puppy Dreams", file: "Puppy%20Dreams.mp3" },
+]
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+  const [volume, setVolume] = useState(0.7)
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+  }, [volume])
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      console.log("[v0] Audio state:", {
+        src: audioRef.current.src,
+        readyState: audioRef.current.readyState,
+        currentTime: audioRef.current.currentTime,
+        duration: audioRef.current.duration,
+      })
+
+      if (isPlaying) {
+        audioRef.current.pause()
+      } else {
+        const playPromise = audioRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log("[v0] Audio play error:", error)
+          })
+        }
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const nextTrack = () => {
+    const newIndex = (currentTrackIndex + 1) % songs.length
+    setCurrentTrackIndex(newIndex)
+    if (audioRef.current) {
+      const newSrc = `/music/${songs[newIndex].file}`
+      console.log("[v0] Loading track:", songs[newIndex].title, "from", newSrc)
+      audioRef.current.src = newSrc
+      audioRef.current.load()
+
+      const playPromise = audioRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log("[v0] Audio play error on next track:", error)
+        })
+      }
+      setIsPlaying(true)
+    }
+  }
+
+  const prevTrack = () => {
+    const newIndex = (currentTrackIndex - 1 + songs.length) % songs.length
+    setCurrentTrackIndex(newIndex)
+    if (audioRef.current) {
+      const newSrc = `/music/${songs[newIndex].file}`
+      console.log("[v0] Loading track:", songs[newIndex].title, "from", newSrc)
+      audioRef.current.src = newSrc
+      audioRef.current.load()
+
+      const playPromise = audioRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log("[v0] Audio play error on prev track:", error)
+        })
+      }
+      setIsPlaying(true)
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <audio
+        ref={audioRef}
+        src={`/music/${songs[currentTrackIndex].file}`}
+        onEnded={nextTrack}
+        onError={(e) => {
+          console.log("[v0] Audio error:", e.currentTarget.error?.message)
+        }}
+        crossOrigin="anonymous"
+        preload="metadata"
+      />
+
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-lg md:text-2xl lg:text-4xl font-bold text-foreground">
+            <img src="/logomain.png" alt="Empire State Bulldogs" className="md:hidden h-12 w-auto" />
+            <span className="hidden md:block text-lg md:text-2xl lg:text-4xl font-bold text-foreground">
               <span className="block">Empire State Bulldogs</span>
             </span>
           </Link>
@@ -48,11 +140,91 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={prevTrack}
+              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+              aria-label="Previous track"
+            >
+              <SkipBack size={18} className="text-primary" />
+            </button>
+
+            <button
+              onClick={togglePlay}
+              className="p-2 bg-primary hover:bg-primary/90 rounded-full transition-colors shadow-lg shadow-primary/40"
+              aria-label={isPlaying ? "Pause" : "Play"}
+            >
+              {isPlaying ? (
+                <Pause size={18} className="text-white fill-white" />
+              ) : (
+                <Play size={18} className="text-white fill-white" />
+              )}
+            </button>
+
+            <button
+              onClick={nextTrack}
+              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+              aria-label="Next track"
+            >
+              <SkipForward size={18} className="text-primary" />
+            </button>
+
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={volume}
+              onChange={(e) => setVolume(Number.parseFloat(e.target.value))}
+              className="w-16 h-1.5 bg-primary/20 rounded appearance-none cursor-pointer accent-primary"
+              aria-label="Volume"
+            />
+
             <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="#contact">Get In Touch</Link>
             </Button>
+          </div>
+
+          {/* Mobile Radio Controls */}
+          <div className="flex lg:hidden items-center gap-2">
+            <button
+              onClick={prevTrack}
+              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+              aria-label="Previous track"
+            >
+              <SkipBack size={16} className="text-primary" />
+            </button>
+
+            <button
+              onClick={togglePlay}
+              className="p-2 bg-primary hover:bg-primary/90 rounded-full transition-colors shadow-lg shadow-primary/40"
+              aria-label={isPlaying ? "Pause" : "Play"}
+            >
+              {isPlaying ? (
+                <Pause size={16} className="text-white fill-white" />
+              ) : (
+                <Play size={16} className="text-white fill-white" />
+              )}
+            </button>
+
+            <button
+              onClick={nextTrack}
+              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+              aria-label="Next track"
+            >
+              <SkipForward size={16} className="text-primary" />
+            </button>
+
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={volume}
+              onChange={(e) => setVolume(Number.parseFloat(e.target.value))}
+              className="w-12 h-1 bg-primary/20 rounded appearance-none cursor-pointer accent-primary"
+              aria-label="Volume"
+            />
           </div>
 
           <button

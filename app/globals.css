@@ -251,6 +251,16 @@
   }
 }
 
+/* Add scrolling text animation for radio player */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .float-emoji {
   animation: float 3s ease-in-out infinite;
   pointer-events: none;
@@ -334,6 +344,10 @@
 
 .menu-item-slide {
   animation: slideDown 0.3s ease-out forwards;
+}
+
+.animate-scroll {
+  animation: scroll 8s linear infinite;
 }
 
 /* Add text stroke effect for better readability */
