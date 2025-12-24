@@ -48,54 +48,53 @@ export function Header() {
     if (!audio) return
 
     const updatePlayingState = () => {
-      setIsPlaying(!audio.paused)
+      setIsPlaying(!audio.paused && !audio.ended)
     }
 
     audio.addEventListener("play", updatePlayingState)
     audio.addEventListener("pause", updatePlayingState)
+    audio.addEventListener("ended", updatePlayingState)
 
     return () => {
       audio.removeEventListener("play", updatePlayingState)
       audio.removeEventListener("pause", updatePlayingState)
+      audio.removeEventListener("ended", updatePlayingState)
     }
   }, [])
 
   const playTrack = (index: number) => {
     setCurrentTrackIndex(index)
-    if (audioRef.current) {
-      const newSrc = `/music/${songs[index].file}`
-      audioRef.current.src = newSrc
-      audioRef.current.load()
+    const audio = audioRef.current
+    if (!audio) return
 
-      setTimeout(() => {
-        if (audioRef.current) {
-          const playPromise = audioRef.current.play()
-          if (playPromise !== undefined) {
-            playPromise.catch((error: Error) => {
-              console.log("[v0] Audio play error:", error.message)
-            })
-          }
-        }
-      }, 100)
+    const newSrc = `/music/${songs[index].file}`
+    audio.src = newSrc
 
-      setIsPlaying(true)
+    const playPromise = audio.play()
+    if (playPromise !== undefined) {
+      playPromise.catch((error: Error) => {
+        console.log("[v0] Audio play error:", error.message)
+      })
     }
   }
 
   const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-        setIsPlaying(false)
+    const audio = audioRef.current
+    if (!audio) return
+
+    if (audio.paused) {
+      if (!audio.src) {
+        playTrack(currentTrackIndex)
       } else {
-        const playPromise = audioRef.current.play()
+        const playPromise = audio.play()
         if (playPromise !== undefined) {
           playPromise.catch((error: Error) => {
             console.log("[v0] Audio play error:", error.message)
           })
         }
-        setIsPlaying(true)
       }
+    } else {
+      audio.pause()
     }
   }
 
