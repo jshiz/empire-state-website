@@ -86,14 +86,17 @@ export function Header() {
       if (!audio.src) {
         playTrack(currentTrackIndex)
       } else {
+        setIsPlaying(true)
         const playPromise = audio.play()
         if (playPromise !== undefined) {
           playPromise.catch((error: Error) => {
             console.log("[v0] Audio play error:", error.message)
+            setIsPlaying(false)
           })
         }
       }
     } else {
+      setIsPlaying(false)
       audio.pause()
     }
   }
@@ -110,13 +113,18 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <audio ref={audioRef} onEnded={nextTrack} crossOrigin="anonymous" preload="metadata" suppressHydrationWarning />
+      <audio ref={audioRef} onEnded={nextTrack} crossOrigin="anonymous" preload="metadata" />
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <img src="/logomain.png" alt="Empire State Bulldogs" className="md:hidden h-12 w-auto" />
+            <img
+              src="/logomain.png"
+              alt="Empire State Bulldogs"
+              className="md:hidden h-12 w-auto"
+              onError={(e) => console.log("[v0] Logo not found at /logomain.png")}
+            />
             <span className="hidden md:block text-lg md:text-2xl lg:text-4xl font-bold text-foreground">
               <span className="block">Empire State Bulldogs</span>
             </span>
