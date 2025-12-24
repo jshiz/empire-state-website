@@ -149,24 +149,20 @@ export function EventsSection() {
 
         {/* Video Section */}
         <div className="bg-secondary rounded-lg md:rounded-2xl p-6 md:p-8 border border-border mb-8 md:mb-12">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-card-foreground text-center">
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-card-foreground text-center">
             Watch Our Latest Highlights
           </h3>
-          <div className="relative w-full max-w-4xl mx-auto aspect-video bg-background rounded-lg md:rounded-xl overflow-hidden">
-            <video
-              className="w-full h-full object-cover"
-              controls
-              controlsList="nodownload"
-              onCanPlay={() => console.log("[v0] Video loaded successfully")}
-              onError={(e) => console.log("[v0] Video error:", e)}
-            >
-              <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/freshvid1-ZeUWtkjRwl9kb1C8R6naxwxppMPqwd.mp4" type="video/mp4" />
-              Your browser does not support the video tag. Please try a different browser or{" "}
-              <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/freshvid1-ZeUWtkjRwl9kb1C8R6naxwxppMPqwd.mp4" download className="text-primary underline">
-                download the video here
-              </a>
-              .
-            </video>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {[1, 2, 3, 4, 5, 6, 7].map((videoNum) => (
+              <div key={videoNum} className="relative bg-background rounded-lg overflow-hidden">
+                <div className="relative w-full aspect-[9/16] bg-background">
+                  <video className="w-full h-full object-cover" controls controlsList="nodownload">
+                    <source src={`/vids/freshvid${videoNum}.mp4`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

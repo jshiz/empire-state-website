@@ -6,10 +6,10 @@ import { X } from "lucide-react"
 import { BackgroundElements } from "@/components/background-elements"
 
 const galleryImages = [
-  { src: "/fresh1.jpg", alt: "French Bulldog Stud" },
-  { src: "/fresh2.jpg", alt: "Playful Frenchie Puppy" },
-  { src: "/fresh3.jpg", alt: "Dog Show Event" },
-  { src: "/fresh4.jpg", alt: "Happy Owner with Frenchie" },
+  { src: "/images/gallery/fresh1.jpg", alt: "French Bulldog Stud" },
+  { src: "/images/gallery/fresh2.jpg", alt: "Playful Frenchie Puppy" },
+  { src: "/images/gallery/fresh3.jpg", alt: "Dog Show Event" },
+  { src: "/images/gallery/fresh4.jpg", alt: "Happy Owner with Frenchie" },
 ]
 
 export function GallerySection() {

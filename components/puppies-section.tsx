@@ -13,7 +13,7 @@ const puppies = [
     title: "Featured Matriarch",
     description:
       "The powerhouse of excellence. El Jefa carries everything with grace and strength. Perfect in every way, she represents the foundation of our breeding program and the future of Empire State Bulldogs. Built to lead, built to inspire.",
-    image: "/El_Jefa.jpg",
+    image: "/images/pups/El_Jefa.jpg",
     highlight: true,
   },
 ]

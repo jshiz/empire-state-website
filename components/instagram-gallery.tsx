@@ -8,7 +8,8 @@ export function InstagramGallery() {
     const script = document.createElement("script")
     script.src = "//www.instagram.com/embed.js"
     script.async = true
-    document.body.appendChild(script)
+    script.defer = true
+    document.head.appendChild(script)
 
     // If Instagram is already loaded, process embeds
     if ((window as any).instgrm) {
@@ -45,15 +46,13 @@ export function InstagramGallery() {
 
         {/* Instagram Embed */}
         <div className="flex justify-center">
-          <iframe
-            src="https://www.instagram.com/bankroll_bop93/embed"
-            width="100%"
-            height="600"
-            frameBorder="0"
-            scrolling="no"
-            allowTransparency
-            className="max-w-md md:max-w-2xl"
-          />
+          <blockquote
+            className="instagram-media max-w-md md:max-w-2xl"
+            data-instgrm-permalink="https://www.instagram.com/bankroll_bop93/?utm_source=ig_embed&amp;utm_campaign=loading"
+            data-instgrm-version="14"
+          >
+            {" "}
+          </blockquote>
         </div>
       </div>
     </section>
