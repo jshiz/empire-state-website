@@ -36,7 +36,7 @@ export function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-12 md:pt-20 overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -51,22 +51,22 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-16 md:py-20 text-center">
+      <div className="relative z-10 container mx-auto px-3 sm:px-4 py-12 md:py-20 text-center flex flex-col items-center justify-center">
         {/* Logo */}
-        <div className={`flex justify-center mb-6 md:mb-8 ${isVisible ? "scroll-scale-in" : "opacity-0"}`}>
+        <div className={`flex justify-center mb-4 sm:mb-6 md:mb-8 ${isVisible ? "scroll-scale-in" : "opacity-0"}`}>
           <Image
             src="/logomain.png"
             alt="Empire State Bulldogs"
             width={200}
             height={200}
-            className="drop-shadow-2xl w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+            className="drop-shadow-2xl w-40 sm:w-48 md:w-56 lg:w-64 h-auto"
             priority
           />
         </div>
 
         {/* Headline */}
         <h1
-          className={`text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 text-balance ${isVisible ? "scroll-fade-up delay-100" : "opacity-0"}`}
+          className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 text-balance px-2 ${isVisible ? "scroll-fade-up delay-100" : "opacity-0"}`}
         >
           <span className="text-foreground">New York&apos;s Premier</span>
           <br />
@@ -74,9 +74,12 @@ export function HeroSection() {
           <span className="text-foreground"> Breeder</span>
         </h1>
 
-        {/* Subheadline */}
         <p
-          className={`text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 md:mb-8 text-pretty ${isVisible ? "scroll-fade-up delay-200" : "opacity-0"}`}
+          className={`text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-md sm:max-w-xl md:max-w-2xl mx-auto mb-4 sm:mb-6 md:mb-8 text-pretty px-4 sm:px-6 md:px-3 py-3 sm:py-4 md:py-2 rounded-2xl md:rounded-3xl text-stroke ${isVisible ? "scroll-fade-up delay-200" : "opacity-0"}`}
+          style={{
+            background: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(4px)",
+          }}
         >
           A lifestyle brand dedicated to breeding excellence, professional care, and building a passionate community of
           dog lovers in Albany, NY and beyond.
@@ -84,46 +87,53 @@ export function HeroSection() {
 
         {/* Trust Badges */}
         <div
-          className={`flex flex-wrap justify-center gap-3 md:gap-6 mb-8 md:mb-10 ${isVisible ? "scroll-fade-up delay-300" : "opacity-0"}`}
+          className={`flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6 mb-6 sm:mb-8 md:mb-10 px-2 ${isVisible ? "scroll-fade-up delay-300" : "opacity-0"}`}
         >
-          <div className="flex items-center gap-2 text-sm md:text-base text-muted-foreground hover:scale-110 transition-transform duration-300">
-            <MapPin className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-white text-stroke hover:scale-110 transition-transform duration-300">
+            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
             <span>Albany, NY</span>
           </div>
-          <div className="flex items-center gap-2 text-sm md:text-base text-muted-foreground hover:scale-110 transition-transform duration-300">
-            <Award className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-white text-stroke hover:scale-110 transition-transform duration-300">
+            <Award className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
             <span>Health Guaranteed</span>
           </div>
-          <div className="flex items-center gap-2 text-sm md:text-base text-muted-foreground hover:scale-110 transition-transform duration-300">
-            <Heart className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-white text-stroke hover:scale-110 transition-transform duration-300">
+            <Heart className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-accent flex-shrink-0" />
             <span>Family Raised</span>
           </div>
         </div>
 
         {/* CTA Buttons */}
         <div
-          className={`flex flex-col sm:flex-row gap-2 md:gap-3 justify-center mb-8 md:mb-10 max-w-xs sm:max-w-none mx-auto ${isVisible ? "scroll-fade-up delay-400" : "opacity-0"}`}
+          className={`flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center mb-6 sm:mb-8 md:mb-10 w-full sm:w-auto max-w-xs sm:max-w-none px-2 sm:px-0 ${isVisible ? "scroll-fade-up delay-400" : "opacity-0"}`}
         >
-          <Button asChild size="lg" className="bg-primary text-primary-foreground hover-lift">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover-lift text-base sm:text-lg">
             <Link href="#studs">View Our Studs</Link>
           </Button>
-          <Button asChild size="lg" className="border-2 border-primary bg-primary/10 text-primary hover-lift">
+          <Button
+            asChild
+            size="lg"
+            className="border-2 border-primary bg-primary/10 text-primary hover-lift text-base sm:text-lg"
+          >
             <Link href="#puppies">Available Puppies</Link>
           </Button>
         </div>
 
-        <div className={`flex justify-center gap-4 md:gap-6 ${isVisible ? "scroll-fade-up delay-500" : "opacity-0"}`}>
+        {/* Social Links */}
+        <div
+          className={`flex justify-center gap-3 sm:gap-4 md:gap-6 ${isVisible ? "scroll-fade-up delay-500" : "opacity-0"}`}
+        >
           {socialLinks.map((social) => (
             <Link
               key={social.label}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 hover:scale-110 transition-all duration-300 hover-lift"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 hover:scale-110 transition-all duration-300 hover-lift flex-shrink-0"
               aria-label={social.label}
             >
               {React.createElement(social.icon, {
-                className: "w-6 h-6 md:w-7 md:h-7 text-primary",
+                className: "w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary",
               })}
             </Link>
           ))}
