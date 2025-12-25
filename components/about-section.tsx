@@ -41,7 +41,8 @@ export function AboutSection() {
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
             Empire State Bulldogs is dedicated to the highest standards of dog care, breeding excellence, and community
-            engagement. Based in Albany, NY, we serve dog lovers within a 500-mile radius.
+            engagement. Based in Albany, NY, we serve dog lovers{" "}
+            <span className="text-primary font-semibold">nationwide</span>.
           </p>
         </div>
 
@@ -68,7 +69,7 @@ export function AboutSection() {
           </div>
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             {[
-              { value: "500+", label: "Mile Service Radius" },
+              { value: "🇺🇸", label: "Nationwide" },
               { value: "100%", label: "Health Guaranteed" },
               { value: "24/7", label: "Lifetime Support" },
               { value: "5★", label: "Customer Reviews" },

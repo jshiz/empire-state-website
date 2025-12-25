@@ -12,7 +12,6 @@ const navLinks = [
   { href: "#studs", label: "Stud Services" },
   { href: "#puppies", label: "Puppies" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#events", label: "Events" },
   { href: "#contact", label: "Contact" },
 ]
 

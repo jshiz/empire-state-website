@@ -10,7 +10,6 @@ const footerLinks = {
     { label: "Stud Services", href: "#studs" },
     { label: "Available Puppies", href: "#puppies" },
     { label: "Gallery", href: "#gallery" },
-    { label: "Events", href: "#events" },
   ],
   support: [
     { label: "Contact Us", href: "#contact" },

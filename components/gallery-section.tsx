@@ -31,19 +31,19 @@ export function GallerySection() {
           </p>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+        <div className="flex gap-3 md:gap-4 justify-center flex-wrap">
           {galleryImages.map((image, index) => (
             <button
               key={index}
-              className="relative aspect-square rounded-lg md:rounded-xl overflow-hidden group cursor-pointer"
+              className="relative rounded-lg md:rounded-xl overflow-hidden group cursor-pointer flex-shrink-0 w-48 md:w-56 h-auto"
               onClick={() => setSelectedImage(image.src)}
             >
               <Image
                 src={image.src || "/placeholder.svg"}
                 alt={image.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                width={300}
+                height={400}
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </button>
           ))}
@@ -52,17 +52,17 @@ export function GallerySection() {
         {/* Lightbox */}
         {selectedImage && (
           <div
-            className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[60] bg-background/95 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
             <button
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-card flex items-center justify-center hover:bg-secondary transition-colors"
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-card flex items-center justify-center hover:bg-secondary transition-colors z-[70]"
               onClick={() => setSelectedImage(null)}
               aria-label="Close lightbox"
             >
               <X className="w-5 h-5 text-foreground" />
             </button>
-            <div className="relative w-full max-w-4xl aspect-square">
+            <div className="relative w-full max-w-3xl max-h-[80vh] h-auto">
               <Image src={selectedImage || "/placeholder.svg"} alt="Gallery image" fill className="object-contain" />
             </div>
           </div>
