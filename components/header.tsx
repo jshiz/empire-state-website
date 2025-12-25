@@ -46,14 +46,21 @@ export function Header() {
       setIsPlaying(!audio.paused && !audio.ended)
     }
 
+    const handleError = () => {
+      console.log("[v0] Audio error:", audio.error?.message)
+      setIsPlaying(false)
+    }
+
     audio.addEventListener("play", updatePlayingState)
     audio.addEventListener("pause", updatePlayingState)
-    audio.addEventListener("ended", updatePlayingState)
+    audio.addEventListener("ended", nextTrack)
+    audio.addEventListener("error", handleError)
 
     return () => {
       audio.removeEventListener("play", updatePlayingState)
       audio.removeEventListener("pause", updatePlayingState)
-      audio.removeEventListener("ended", updatePlayingState)
+      audio.removeEventListener("ended", nextTrack)
+      audio.removeEventListener("error", handleError)
     }
   }, [])
 
@@ -64,13 +71,17 @@ export function Header() {
 
     const newSrc = `/music/${songs[index].file}`
     audio.src = newSrc
+    audio.load()
 
-    const playPromise = audio.play()
-    if (playPromise !== undefined) {
-      playPromise.catch((error: Error) => {
-        console.log("[v0] Audio play error:", error.message)
-      })
-    }
+    setTimeout(() => {
+      const playPromise = audio.play()
+      if (playPromise !== undefined) {
+        playPromise.catch((error: Error) => {
+          console.log("[v0] Audio play error:", error.message)
+          setIsPlaying(false)
+        })
+      }
+    }, 100)
   }
 
   const togglePlay = () => {
@@ -91,8 +102,8 @@ export function Header() {
         }
       }
     } else {
-      setIsPlaying(false)
       audio.pause()
+      setIsPlaying(false)
     }
   }
 
@@ -108,7 +119,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <audio ref={audioRef} onEnded={nextTrack} crossOrigin="anonymous" preload="metadata" />
+      <audio ref={audioRef} />
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
