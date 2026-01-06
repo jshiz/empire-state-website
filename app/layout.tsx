@@ -91,13 +91,39 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/logomain.png",
+        url: "/favicon.ico",
+        sizes: "48x48",
+        type: "image/x-icon",
+      },
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/favicon-96x96.png",
+        sizes: "96x96",
         type: "image/png",
+      },
+      {
+        url: "/logomain.png",
         sizes: "any",
+        type: "image/png",
       },
     ],
-    shortcut: "/logomain.png",
-    apple: "/logomain.png",
+    shortcut: "/favicon.ico",
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
+    ],
   },
   category: "pets",
   generator: "v0.app",
@@ -120,6 +146,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <meta name="msapplication-TileColor" content="#1a1035" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
 
         <script
           type="application/ld+json"
