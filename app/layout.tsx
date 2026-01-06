@@ -87,7 +87,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-    "pinterest-rich-pins": "enabled",
   },
   icons: {
     icon: [
