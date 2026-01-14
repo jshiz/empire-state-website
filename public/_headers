@@ -1,0 +1,15 @@
+/music/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Accept-Ranges: bytes
+
+/*.mp4
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Accept-Ranges: bytes
+
+/*.webm
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Accept-Ranges: bytes
+
+/*.mov
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Accept-Ranges: bytes
