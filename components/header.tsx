@@ -175,10 +175,10 @@ export function Header() {
               </button>
             </div>
 
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hidden xl:flex gap-2">
-              <a href="tel:5189173429">
-                <Phone size={18} />
-                518-917-3429
+            <Button asChild variant="outline" className="border-primary border-2 text-primary hover:bg-primary hover:text-primary-foreground hidden xl:flex gap-2 bg-transparent">
+              <a href="tel:5189173429" className="flex items-center gap-2">
+                <Phone size={18} className="shrink-0" />
+                <span className="font-bold">518-917-3429</span>
               </a>
             </Button>
 
