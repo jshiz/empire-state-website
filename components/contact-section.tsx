@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Copy, Check } from "lucide-react"
+import { Mail, Copy, Check, Phone } from "lucide-react"
 import { BackgroundElements } from "@/components/background-elements"
 
 export function ContactSection() {
@@ -43,32 +43,40 @@ export function ContactSection() {
                 The fastest way to get in touch with our team for inquiries and support.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <div className="flex items-center gap-3 bg-secondary px-6 py-4 rounded-xl border border-border w-full sm:w-auto overflow-hidden">
-                  <span className="text-foreground font-medium truncate">{email}</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                {/* Email Column */}
+                <div className="flex-1 w-full space-y-4">
+                  <div className="flex items-center gap-3 bg-secondary px-6 py-4 rounded-xl border border-border overflow-hidden">
+                    <Mail className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-foreground font-medium truncate">{email}</span>
+                  </div>
+                  <div className="flex gap-4">
+                    <Button
+                      onClick={copyToClipboard}
+                      className="flex-1 bg-secondary hover:bg-secondary/80 text-foreground border border-border h-12 rounded-xl transition-all"
+                    >
+                      {copied ? (
+                        <><Check className="w-4 h-4 mr-2 text-green-500" />Copied</>
+                      ) : (
+                        <><Copy className="w-4 h-4 mr-2" />Copy</>
+                      )}
+                    </Button>
+                    <Button asChild className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 h-12 rounded-xl">
+                      <a href={`mailto:${email}`}>Email Now</a>
+                    </Button>
+                  </div>
                 </div>
 
-                <div className="flex gap-4 w-full sm:w-auto">
-                  <Button
-                    onClick={copyToClipboard}
-                    className="flex-1 sm:flex-none bg-secondary hover:bg-secondary/80 text-foreground border border-border h-14 px-6 rounded-xl transition-all"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-5 h-5 mr-2 text-green-500" />
-                        Copied
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-5 h-5 mr-2" />
-                        Copy
-                      </>
-                    )}
-                  </Button>
-
-                  <Button asChild className="flex-1 sm:flex-none bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 rounded-xl shadow-lg shadow-primary/20">
-                    <a href={`mailto:${email}`}>
-                      Email Now
+                {/* Phone Column */}
+                <div className="flex-1 w-full space-y-4">
+                  <div className="flex items-center gap-3 bg-secondary px-6 py-4 rounded-xl border border-border overflow-hidden">
+                    <Phone className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-foreground font-medium truncate">518-917-3429</span>
+                  </div>
+                  <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 rounded-xl shadow-lg shadow-primary/20">
+                    <a href="tel:5189173429" className="flex items-center justify-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      Call Now
                     </a>
                   </Button>
                 </div>

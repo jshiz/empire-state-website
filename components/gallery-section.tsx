@@ -25,6 +25,11 @@ const uniqueFreshPhotos = [
   "/images/fresh4.jpg",
   "/images/fresh5.jpg",
   "/images/fresh7.jpg",
+  "/images/puppy1-1.jpg",
+  "/images/puppy2-1.jpg",
+  "/images/puppy3-1.jpg",
+  "/images/puppy4-1.jpg",
+  "/images/puppy5-1.jpg",
 ]
 
 export function GallerySection() {
@@ -46,16 +51,16 @@ export function GallerySection() {
 
         {/* Gallery Grid */}
         <div className="flex gap-4 md:gap-6 justify-center flex-wrap max-w-6xl mx-auto">
-          {freshPhotos.map((image, index) => (
+          {uniqueFreshPhotos.map((src, index) => (
             <div
               key={index}
               className="relative rounded-2xl overflow-hidden group flex-shrink-0 w-44 md:w-64 aspect-square bg-muted/20"
             >
               <Image
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
+                src={src || "/placeholder.svg"}
+                alt={`Empire State Bulldog Gallery Photo ${index + 1}`}
                 fill
-                className="object-contain p-2 rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>

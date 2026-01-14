@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
-import { Menu, XIcon, Facebook, Instagram, Play, Pause, SkipForward, SkipBack } from "lucide-react"
+import { Menu, XIcon, Facebook, Instagram, Play, Pause, SkipForward, SkipBack, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -145,49 +145,50 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <button
-              onClick={prevTrack}
-              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
-              aria-label="Previous track"
-            >
-              <SkipBack size={18} className="text-primary" />
-            </button>
+            <div className="flex items-center gap-2 mr-2">
+              <button
+                onClick={prevTrack}
+                className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+                aria-label="Previous track"
+              >
+                <SkipBack size={18} className="text-primary" />
+              </button>
 
-            <button
-              onClick={togglePlay}
-              className="p-2 bg-primary hover:bg-primary/90 rounded-full transition-colors shadow-lg shadow-primary/40"
-              aria-label={isPlaying ? "Pause" : "Play"}
-            >
-              {isPlaying ? (
-                <Pause size={18} className="text-white fill-white" />
-              ) : (
-                <Play size={18} className="text-white fill-white" />
-              )}
-            </button>
+              <button
+                onClick={togglePlay}
+                className="p-2 bg-primary hover:bg-primary/90 rounded-full transition-colors shadow-lg shadow-primary/40"
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? (
+                  <Pause size={18} className="text-white fill-white" />
+                ) : (
+                  <Play size={18} className="text-white fill-white" />
+                )}
+              </button>
 
-            <button
-              onClick={nextTrack}
-              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
-              aria-label="Next track"
-            >
-              <SkipForward size={18} className="text-primary" />
-            </button>
+              <button
+                onClick={nextTrack}
+                className="p-2 hover:bg-primary/20 rounded-full transition-colors"
+                aria-label="Next track"
+              >
+                <SkipForward size={18} className="text-primary" />
+              </button>
+            </div>
+
+            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hidden xl:flex gap-2">
+              <a href="tel:5189173429">
+                <Phone size={18} />
+                518-917-3429
+              </a>
+            </Button>
 
             <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="#contact">Get In Touch</Link>
             </Button>
           </div>
 
-          {/* Mobile Radio Controls */}
+          {/* Mobile Radio & Menu Controls */}
           <div className="flex lg:hidden items-center gap-2">
-            <button
-              onClick={prevTrack}
-              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
-              aria-label="Previous track"
-            >
-              <SkipBack size={16} className="text-primary" />
-            </button>
-
             <button
               onClick={togglePlay}
               className="p-2 bg-primary hover:bg-primary/90 rounded-full transition-colors shadow-lg shadow-primary/40"
@@ -201,21 +202,13 @@ export function Header() {
             </button>
 
             <button
-              onClick={nextTrack}
-              className="p-2 hover:bg-primary/20 rounded-full transition-colors"
-              aria-label="Next track"
+              className="text-foreground p-2 transition-transform duration-300 hover:scale-110"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
-              <SkipForward size={16} className="text-primary" />
+              {isMenuOpen ? <XIcon size={32} /> : <Menu size={32} />}
             </button>
           </div>
-
-          <button
-            className="lg:hidden text-foreground p-2 transition-transform duration-300 hover:scale-110"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <XIcon size={32} /> : <Menu size={32} />}
-          </button>
         </div>
 
         {isMenuOpen && (
@@ -232,6 +225,15 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
+
+              <a
+                href="tel:5189173429"
+                className="text-2xl font-bold text-primary flex items-center gap-3 py-4 menu-item-slide"
+                style={{ animationDelay: `${navLinks.length * 50}ms` }}
+              >
+                <Phone size={24} />
+                518-917-3429
+              </a>
 
               <div className="flex gap-6 justify-center pt-4 border-t border-border mt-4 w-full">
                 {socialLinks.map((social, index) => {

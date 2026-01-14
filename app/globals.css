@@ -130,6 +130,11 @@
   h6 {
     /* Removed specific letter-spacing as it was for Pricedown */
   }
+
+  img, [data-nextjs-image], [class*="rounded-"] {
+    border-radius: var(--radius-xl) !important;
+    overflow: hidden;
+  }
 }
 
 /* Custom scrollbar for dark theme */

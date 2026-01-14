@@ -48,19 +48,27 @@ export function Footer() {
             <p className="text-muted-foreground text-base mb-4">
               New York&apos;s premier French Bulldog breeder and lifestyle brand, based in Albany, NY.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5 text-muted-foreground hover:text-primary" />
-                </Link>
-              ))}
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5 text-muted-foreground hover:text-primary" />
+                  </Link>
+                ))}
+              </div>
+              <a
+                href="tel:5189173429"
+                className="text-lg font-bold text-primary hover:text-primary/80 transition-colors"
+              >
+                518-917-3429
+              </a>
             </div>
           </div>
 

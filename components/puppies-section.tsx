@@ -81,55 +81,36 @@ export function PuppiesSection() {
           </p>
         </div>
 
-        {/* Puppies Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
-          {puppyData.map((puppy) => (
-            <Card
-              key={puppy.id}
-              className={`bg-secondary border-border overflow-hidden hover:border-primary/50 transition-all duration-300 group ${isVisible ? "scroll-fade-up" : "opacity-0"}`}
-            >
-              <div className="relative aspect-square bg-muted flex items-center justify-center overflow-hidden">
+        {/* Puppies Grid - Coming Soon */}
+        <div className="max-w-4xl mx-auto mb-16 px-4">
+          <Card className={`bg-secondary border-border overflow-hidden hover:border-primary/50 transition-all duration-300 group ${isVisible ? "scroll-fade-up" : "opacity-0"}`}>
+            <div className="grid md:grid-cols-2 gap-8 items-center p-6 md:p-8">
+              <div className="relative aspect-square bg-muted flex items-center justify-center overflow-hidden rounded-2xl">
                 <Image
-                  src={puppy.photos[activePhotos[puppy.id]] || "/placeholder.svg"}
-                  alt={puppy.name}
+                  src="/images/coming_soon.jpg"
+                  alt="New Puppies Coming Soon"
                   fill
-                  className="object-contain p-2 rounded-2xl transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-
-                {/* Multi-photo indicator/dots */}
-                {puppy.photos.length > 1 && (
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-20">
-                    {puppy.photos.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onMouseEnter={() => handlePhotoChange(puppy.id, idx)}
-                        onClick={() => handlePhotoChange(puppy.id, idx)}
-                        className={`w-2 h-2 rounded-full transition-all ${activePhotos[puppy.id] === idx ? "bg-primary scale-125" : "bg-white/50 hover:bg-white"
-                          }`}
-                        aria-label={`View photo ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                )}
-
-                <div className="absolute top-2 right-2">
-                  <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
-                    {puppy.color}
-                  </Badge>
-                </div>
               </div>
-              <CardContent className="p-4 text-center">
-                <h3 className="text-xl font-bold text-card-foreground mb-4">{puppy.name}</h3>
+              <div className="text-center md:text-left">
+                <Badge variant="secondary" className="bg-primary text-primary-foreground mb-4 px-4 py-1 text-lg">
+                  Dropping Soon!
+                </Badge>
+                <h3 className="text-2xl md:text-4xl font-bold text-card-foreground mb-4">Official New Puppies</h3>
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+                  We have official new puppies which are dropping soon! Check back soon to find your new best friend.
+                </p>
                 <Button
                   asChild
-                  size="sm"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  size="lg"
+                  className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-xl rounded-xl"
                 >
-                  <Link href="#contact">Inquire</Link>
+                  <Link href="#contact">Inquire Early</Link>
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* What's Included */}

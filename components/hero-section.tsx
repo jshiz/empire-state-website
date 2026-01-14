@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Facebook, Instagram, Heart, Award, MapPin } from "lucide-react"
+import { Facebook, Instagram, Heart, Award, MapPin, Phone } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { Fireworks } from "@/components/fireworks"
 
@@ -79,6 +79,10 @@ export function HeroSection() {
         <div
           className={`flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mb-5 sm:mb-6 md:mb-8 px-2 ${isVisible ? "scroll-fade-up delay-300" : "opacity-0"}`}
         >
+          <a href="tel:5189173429" className="flex items-center gap-2 text-sm sm:text-base md:text-base text-white text-stroke hover:scale-110 transition-transform duration-300">
+            <Phone className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+            <span>518-917-3429</span>
+          </a>
           <div className="flex items-center gap-2 text-sm sm:text-base md:text-base text-white text-stroke hover:scale-110 transition-transform duration-300">
             <MapPin className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
             <span>Albany, NY</span>
