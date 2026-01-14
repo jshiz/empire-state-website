@@ -2,8 +2,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Award, Heart, Facebook, Instagram } from "lucide-react"
+import { Facebook, Instagram, Heart, Award, MapPin } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { Fireworks } from "@/components/fireworks"
 
 export function HeroSection() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 })
@@ -37,6 +38,8 @@ export function HeroSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
       </div>
+
+      <Fireworks />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-3 sm:px-4 py-8 md:py-12 text-center flex flex-col items-center justify-center">
