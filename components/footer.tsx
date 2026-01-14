@@ -11,14 +11,14 @@ const footerLinks = {
   ],
   support: [
     { label: "Contact Us", href: "#contact" },
-    { label: "FAQ", href: "#" },
-    { label: "Health Guarantee", href: "#" },
-    { label: "Shipping Info", href: "#" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Health Guarantee", href: "/health-guarantee" },
+    { label: "Shipping Info", href: "/shipping" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Breeding Policies", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Breeding Policies", href: "/breeding-policies" },
   ],
 }
 

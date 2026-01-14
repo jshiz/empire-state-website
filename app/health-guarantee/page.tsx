@@ -1,0 +1,64 @@
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { Card, CardContent } from "@/components/ui/card"
+import { ShieldCheck } from "lucide-react"
+
+export default function HealthGuaranteePage() {
+    return (
+        <main className="min-h-screen bg-background text-foreground">
+            <Header />
+            <div className="container mx-auto px-4 py-32 md:py-40">
+                <div className="text-center mb-16">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <ShieldCheck className="w-10 h-10 text-primary" />
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Health Guarantee</h1>
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+                        Our commitment to the health and well-being of every puppy that leaves our home.
+                    </p>
+                </div>
+
+                <div className="max-w-4xl mx-auto">
+                    <Card className="bg-card border-border rounded-2xl overflow-hidden shadow-xl mb-12">
+                        <CardContent className="p-8 md:p-12 space-y-8">
+                            <section>
+                                <h2 className="text-2xl font-bold mb-4">1-Year Genetic Guarantee</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    Every Empire State Bulldogs puppy comes with a one-year guarantee against life-threatening congenital or hereditary defects. We conduct rigorous health testing on all our breeding stock to ensure the highest quality genetics.
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 className="text-2xl font-bold mb-4">Initial Veterinary Check</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    Before going to their new home, each puppy is thoroughly examined by a licensed veterinarian. They will be up-to-date on all age-appropriate vaccinations and deworming treatments.
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 className="text-2xl font-bold mb-4">Your Responsibility</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    To maintain this guarantee, the buyer must have the puppy examined by a licensed veterinarian within 48-72 hours of receiving the puppy. Regular veterinary care, proper nutrition, and a safe environment are essential for your puppy&apos;s health.
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 className="text-2xl font-bold mb-4">What is Covered</h2>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    This guarantee covers severe, life-threatening genetic conditions of the heart, liver, kidneys, and other major organs. It does not cover common puppy issues such as kennel cough, parasites, or minor environmental allergies.
+                                </p>
+                            </section>
+
+                            <div className="pt-8 border-t border-border/50 text-center">
+                                <p className="font-semibold text-primary italic">
+                                    At Empire State Bulldogs, we believe in breeding for health first.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+            <Footer />
+        </main>
+    )
+}

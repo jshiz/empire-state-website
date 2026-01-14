@@ -1,55 +1,19 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
-import { Send } from "lucide-react"
+import { Mail, Copy, Check } from "lucide-react"
 import { BackgroundElements } from "@/components/background-elements"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    service: "",
-    message: "",
-  })
-  const [isLoading, setIsLoading] = useState(false)
+  const email = "hello@empirestatebulldogs.com"
+  const [copied, setCopied] = useState(false)
 
-  const services = ["Puppy Inquiry", "Stud Service", "General Question", "Other"]
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          subject: formData.service,
-        }),
-      })
-
-      if (response.ok) {
-        setFormData({ name: "", email: "", service: "", message: "" })
-        alert("Thank you for your message! We'll get back to you soon.")
-      } else {
-        alert("There was an error sending your message. Please try again.")
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      alert("There was an error sending your message. Please try again.")
-    } finally {
-      setIsLoading(false)
-    }
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -60,97 +24,70 @@ export function ContactSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-primary text-base md:text-lg font-semibold uppercase tracking-wider">Contact Us</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-foreground">Let&apos;s Connect</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4 text-foreground">Let&apos;s Connect</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
             Whether you&apos;re interested in a puppy, stud services, or just want to learn more about Empire State
             Bulldogs, we&apos;d love to hear from you.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Form - Now centered and takes full width */}
-          <Card className="lg:col-span-3 bg-card border-border max-w-2xl mx-auto w-full">
-            <CardContent className="p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 text-card-foreground text-center">
-                Send Us a Message
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-card-foreground">
-                      Name *
-                    </Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                      className="bg-secondary border-border text-card-foreground placeholder:text-muted-foreground"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-card-foreground">
-                      Email *
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="bg-secondary border-border text-card-foreground placeholder:text-muted-foreground"
-                      placeholder="your@email.com"
-                    />
-                  </div>
+        <div className="max-w-3xl mx-auto">
+          <Card className="bg-card border-border overflow-hidden rounded-2xl shadow-2xl shadow-primary/10">
+            <CardContent className="p-8 md:p-12 text-center">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Mail className="w-10 h-10 text-primary" />
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Send Us an Email</h3>
+              <p className="text-muted-foreground mb-8 text-lg">
+                The fastest way to get in touch with our team for inquiries and support.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="flex items-center gap-3 bg-secondary px-6 py-4 rounded-xl border border-border w-full sm:w-auto overflow-hidden">
+                  <span className="text-foreground font-medium truncate">{email}</span>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-card-foreground">
-                    Service *
-                  </Label>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) => setFormData({ ...formData, service: value })}
+                <div className="flex gap-4 w-full sm:w-auto">
+                  <Button
+                    onClick={copyToClipboard}
+                    className="flex-1 sm:flex-none bg-secondary hover:bg-secondary/80 text-foreground border border-border h-14 px-6 rounded-xl transition-all"
                   >
-                    <SelectTrigger className="bg-secondary border-border text-card-foreground">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {services.map((service) => (
-                        <SelectItem key={service} value={service}>
-                          {service}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                    {copied ? (
+                      <>
+                        <Check className="w-5 h-5 mr-2 text-green-500" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-5 h-5 mr-2" />
+                        Copy
+                      </>
+                    )}
+                  </Button>
 
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-card-foreground">
-                    Message *
-                  </Label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
-                    rows={5}
-                    className="bg-secondary border-border text-card-foreground placeholder:text-muted-foreground resize-none"
-                    placeholder="Tell us about what you're looking for..."
-                  />
+                  <Button asChild className="flex-1 sm:flex-none bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 rounded-xl shadow-lg shadow-primary/20">
+                    <a href={`mailto:${email}`}>
+                      Email Now
+                    </a>
+                  </Button>
                 </div>
+              </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-                  disabled={isLoading}
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  {isLoading ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+              <div className="mt-12 pt-12 border-t border-border/50 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h4 className="font-bold text-foreground mb-2">Location</h4>
+                  <p className="text-muted-foreground">Albany, NY & Beyond</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-foreground mb-2">Response Time</h4>
+                  <p className="text-muted-foreground">Usually within 24 hours</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-foreground mb-2">Service Area</h4>
+                  <p className="text-muted-foreground">Nationwide Shipping Available</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

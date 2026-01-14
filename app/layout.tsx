@@ -17,26 +17,12 @@ export const metadata: Metadata = {
     template: "%s | Empire State Bulldogs",
   },
   description:
-    "Empire State Bulldogs is New York's premier French Bulldog breeder and lifestyle brand. Offering healthy French Bulldog puppies, professional stud services featuring King Simba, and a vibrant dog lover community in Albany, NY. Serving customers within 500 miles.",
+    "Empire State Bulldogs is New York's premier French Bulldog breeder. Quality AKC Frenchie puppies for sale, world-class stud services featuring King Simba, and a passionate community of exotic Frenchie lovers.",
   keywords: [
-    "French Bulldog breeder Albany NY",
-    "French Bulldog puppies for sale New York",
-    "Empire State Bulldogs",
-    "Stud services French Bulldogs NY",
-    "French Bulldog stud Albany",
-    "French Bulldog breeder New York State",
-    "Buy French Bulldog puppies Albany",
-    "French Bulldog breeder near me",
-    "French Bulldog puppies available now",
-    "Professional French Bulldog breeder",
-    "Healthy French Bulldog puppies",
-    "King Simba French Bulldog stud",
-    "French Bulldog breeder with health guarantees",
-    "French Bulldog puppies with vaccinations",
-    "French Bulldog lifestyle brand NY",
-    "Dog shows New York",
-    "French Bulldog community",
-    "Premium dog breeder upstate New York",
+    "french bulldog puppies", "frenchie puppies for sale", "french bulldog breeder", "french bulldog stud service",
+    "blue french bulldog", "lilac french bulldog", "isabella frenchie", "fluffy french bulldog", "merle french bulldog",
+    "french bulldog breeder NY", "french bulldog puppies Albany", "AKC french bulldog", "exotic frenchie breeder",
+    "premium french bulldog studs", "Empire State Bulldogs", "King Simba stud", "quality french bulldog genetics"
   ],
   authors: [{ name: "Empire State Bulldogs" }],
   creator: "Empire State Bulldogs",
@@ -58,10 +44,10 @@ export const metadata: Metadata = {
     siteName: "Empire State Bulldogs",
     images: [
       {
-        url: "/socialsharing.jpg",
+        url: "/images/socialsharing.jpg",
         width: 1200,
         height: 630,
-        alt: "Empire State Bulldogs - Premier French Bulldog Breeder in New York",
+        alt: "Empire State Bulldogs - Premier French Bulldog Breeder",
         type: "image/jpeg",
       },
     ],
@@ -70,10 +56,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Empire State Bulldogs | Premier French Bulldog Breeder & Lifestyle Brand",
+    title: "Empire State Bulldogs | Premier Frenchie Breeder",
     description:
-      "Offering stud services, healthy puppies, and a passionate dog lover community in Albany, NY. Contact us today!",
-    images: ["/socialsharing.jpg"],
+      "World-class French Bulldog puppies and stud services. AKC registered, health tested, and family raised.",
+    images: ["/images/socialsharing.jpg"],
     creator: "@Empire_State_Bulldogs",
     site: "@Empire_State_Bulldogs",
   },
@@ -95,12 +81,12 @@ export const metadata: Metadata = {
         type: "image/svg+xml",
       },
       {
-        url: "/favicon-96x96.png",
+        url: "/images/favicon-96x96.png",
         sizes: "96x96",
         type: "image/png",
       },
       {
-        url: "/logomain.png",
+        url: "/images/logomain.png",
         sizes: "any",
         type: "image/png",
       },
@@ -110,13 +96,13 @@ export const metadata: Metadata = {
       {
         url: "/apple-touch-icon.png",
         sizes: "180x180",
-        type: "image/png",
-      },
+        type: "image/png"
+      }
     ],
     other: [
       {
         rel: "manifest",
-        url: "/site.webmanifest",
+        url: "/images/site.webmanifest",
       },
     ],
   },
@@ -142,7 +128,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <meta name="msapplication-TileColor" content="#1a1035" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta name="msapplication-config" content="/images/browserconfig.xml" />
         <meta name="apple-mobile-web-app-title" content="Empire State Bulldogs" />
 
         <script
@@ -153,7 +139,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Empire State Bulldogs",
               url: "https://www.empirestatebulldogs.com",
-              logo: "https://www.empirestatebulldogs.com/logomain.png",
+              logo: "https://www.empirestatebulldogs.com/images/logomain.png",
               description:
                 "Premier French Bulldog breeder and lifestyle brand offering quality puppies, stud services, and community in Albany, NY.",
               sameAs: [
@@ -177,11 +163,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "@id": "https://www.empirestatebulldogs.com",
               name: "Empire State Bulldogs",
-              image: "https://www.empirestatebulldogs.com/socialsharing.jpg",
+              image: "https://www.empirestatebulldogs.com/images/socialsharing.jpg",
               description:
                 "Premier French Bulldog breeder and lifestyle brand in Albany, NY. Quality puppies, professional stud services, and a passionate community.",
               address: {
