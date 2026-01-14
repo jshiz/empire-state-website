@@ -13,7 +13,7 @@ export function InstagramGallery() {
 
     // If Instagram is already loaded, process embeds
     if ((window as any).instgrm) {
-      ;(window as any).instgrm.Embeds.process()
+      ; (window as any).instgrm.Embeds.process()
     }
 
     return () => {
@@ -35,7 +35,7 @@ export function InstagramGallery() {
             Stay updated with the latest from Empire State Bulldogs on Instagram
           </p>
           <a
-            href="https://www.instagram.com/EmpireStateBulldogs"
+            href="https://www.instagram.com/bankroll_bop93/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
@@ -48,7 +48,7 @@ export function InstagramGallery() {
         <div className="flex justify-center">
           <blockquote
             className="instagram-media max-w-md md:max-w-2xl"
-            data-instgrm-permalink="https://www.instagram.com/EmpireStateBulldogs/?utm_source=ig_embed&amp;utm_campaign=loading"
+            data-instgrm-permalink="https://www.instagram.com/bankroll_bop93/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
           >
             {" "}

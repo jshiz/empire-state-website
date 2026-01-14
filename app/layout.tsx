@@ -147,11 +147,8 @@ export default function RootLayout({
               description:
                 "Premier French Bulldog breeder and lifestyle brand offering quality puppies, stud services, and community in Albany, NY.",
               sameAs: [
-                "https://www.facebook.com/EmpireStateBulldogs",
-                "https://www.instagram.com/EmpireStateBulldogs",
-                "https://x.com/Empire_State_Bulldogs",
-                "https://www.tiktok.com/@EmpireStateBulldogs",
-                "https://www.youtube.com/@EmpireStateBulldogs",
+                "https://www.instagram.com/bankroll_bop93/",
+                "https://www.tiktok.com/@bankrollbop?is_from_webapp=1&sender_device=pc",
               ],
               contactPoint: {
                 "@type": "ContactPoint",

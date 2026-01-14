@@ -6,6 +6,7 @@ import { PuppiesSection } from "@/components/puppies-section"
 import { GallerySection } from "@/components/gallery-section"
 import { FamilySection } from "@/components/family-section"
 import { ContactSection } from "@/components/contact-section"
+import { SocialFollowSection } from "@/components/social-follow-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       {/* Build Verification: 2026-01-14-V2 - Cache Fix Applied */}
       <Header />
       <HeroSection />
+      <SocialFollowSection />
       <AboutSection />
       <StudServicesSection />
       <PuppiesSection />

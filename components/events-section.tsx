@@ -91,7 +91,7 @@ export function EventsSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg">
-              <Link href="https://www.instagram.com/Empire_State_Bulldogs" target="_blank">
+              <Link href="https://www.instagram.com/bankroll_bop93/" target="_blank">
                 Follow on Instagram
               </Link>
             </Button>
@@ -100,8 +100,8 @@ export function EventsSection() {
               variant="outline"
               className="border-primary text-primary hover:bg-primary/10 bg-transparent text-base md:text-lg"
             >
-              <Link href="https://www.facebook.com/EmpireStateBulldogs" target="_blank">
-                Join on Facebook
+              <Link href="https://www.tiktok.com/@bankrollbop?is_from_webapp=1&sender_device=pc" target="_blank">
+                Follow on TikTok
               </Link>
             </Button>
           </div>
