@@ -1,3 +1,16 @@
+# HTML files - No caching, must revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Next.js static assets - Cache forever (hashed)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and other static public assets
+/images/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Media files
 /music/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
   Accept-Ranges: bytes
